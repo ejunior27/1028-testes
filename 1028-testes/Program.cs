@@ -4,7 +4,11 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var calc = new Calculadora();
+
+            var result = calc.Somar(2, 2);
+
+            Console.WriteLine(result);
         }
     }
 }
