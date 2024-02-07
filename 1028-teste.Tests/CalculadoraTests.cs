@@ -1,9 +1,5 @@
 ﻿using _1028_testes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xunit;
 
 namespace _1028_teste.Tests
 {
@@ -17,18 +13,23 @@ namespace _1028_teste.Tests
         //NomeDaClasse_ResultadoEsperado_EstadoDoTeste
         //EstadoDoTesteRetornoEsperado
 
-        [Fact]
-        public void Calculadora_Somar_RetornaValoresSomados()
+        [Theory]
+        [InlineData(2,2,4)]
+        [InlineData(1,1,2)]
+        [InlineData(3,2,5)]
+        [InlineData(999,1,1000)]
+        [InlineData(0,2,2)]
+        public void Calculadora_Somar_RetornaValoresSomados(int v1, int v2, int res)
         {
             //Arrange
             var calculadora = new Calculadora();
 
             //Act
-            var result = calculadora.Somar(2, 2);
+            var result = calculadora.Somar(v1, v2);
 
             //Assert
-            Assert.Equal(4, result);
-        }
+            Assert.Equal(res, result);
+        }        
 
         [Fact]
         public void Calculadora_Dividir_RetornaResultadoDivisao()
