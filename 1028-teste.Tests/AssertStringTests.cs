@@ -37,6 +37,7 @@ namespace _1028_teste.Tests
         }
 
         [Fact]
+        
         public void StringsTools_UnirNomes_DeveConterTrecho()
         {
             // Arrange
