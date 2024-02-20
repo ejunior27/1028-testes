@@ -1,10 +1,6 @@
 ﻿using _1028_testes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
+using FluentAssertions;
 
 namespace _1028_teste.Tests
 {
@@ -17,7 +13,9 @@ namespace _1028_teste.Tests
             var funcionario = new Funcionario("", 1000);
 
             // Assert
-            Assert.False(string.IsNullOrEmpty(funcionario.Nome));
+            //Assert.False(string.IsNullOrEmpty(funcionario.Nome));
+
+            funcionario.Nome.Should().NotBeNullOrEmpty();            
         }
 
         [Fact]
@@ -27,11 +25,16 @@ namespace _1028_teste.Tests
             var funcionario = new Funcionario("Eduardo", 1000);
 
             // Assert
-            Assert.Null(funcionario.Apelido);
+            //Assert.Null(funcionario.Apelido);
+
+            funcionario.Apelido.Should().BeNull();
 
             // Assert Bool
-            Assert.True(string.IsNullOrEmpty(funcionario.Apelido));
-            Assert.False(funcionario.Apelido?.Length > 0);
+            //Assert.True(string.IsNullOrEmpty(funcionario.Apelido));
+            //Assert.False(funcionario.Apelido?.Length > 0);
+
+            funcionario.Apelido.Should().BeNullOrEmpty();
+            //funcionario.Apelido.Should().NotBeNullOrEmpty();
         }
     }    
 }

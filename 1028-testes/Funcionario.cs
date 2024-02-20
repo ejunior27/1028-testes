@@ -7,6 +7,8 @@ namespace _1028_testes
     {
         public string Nome { get; protected set; }
         public string Apelido { get; set; }
+        public int Idade { get; set; }
+        public bool PossuiHabilitaçãoB { get; set; }
     }
 
     public class Funcionario : Pessoa

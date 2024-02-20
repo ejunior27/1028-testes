@@ -1,4 +1,5 @@
 ﻿using _1028_testes;
+using FluentAssertions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,10 @@ namespace _1028_teste.Tests
             var funcionario = FuncionarioFactory.Criar("Eduardo", 1000);
 
             // Assert
-            Assert.Contains("OOP", funcionario.Habilidades);
+            //Assert.Contains("POO", funcionario.Habilidades);
+
+            funcionario.Habilidades.Should().Contain("POO");
+            funcionario.Habilidades.Should().HaveCountGreaterThanOrEqualTo(2);
         }
 
         [Fact]
@@ -37,7 +41,9 @@ namespace _1028_teste.Tests
             var funcionario = FuncionarioFactory.Criar("Eduardo", 1000);
 
             // Assert
-            Assert.DoesNotContain("Microservices", funcionario.Habilidades);
+            //Assert.DoesNotContain("Microservices", funcionario.Habilidades);
+
+            funcionario.Habilidades.Should().NotContain("Microservices");            
         }
     }
 }
