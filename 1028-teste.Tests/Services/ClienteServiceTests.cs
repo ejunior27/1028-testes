@@ -14,16 +14,24 @@ namespace _1028_teste.Tests.Services
 {
     public class ClienteServiceTests
     {
+        private readonly Mock<IClienteRepository> clienteRepository;
+        private readonly Mock<IMediator> mediatr;
+
+        private readonly ClienteService clienteService;
+
+        public ClienteServiceTests()
+        {
+            clienteRepository = new();
+            mediatr = new();
+            clienteService = new(clienteRepository.Object, mediatr.Object);
+        }
+
         [Fact(DisplayName = "Adicionar Cliente Válido")]        
         public void Adicionar_Cliente_Valido()
         {
             //Arrange
             var cliente = new Cliente(Guid.NewGuid(), "Vagner", "Silva", new DateTime(1999, 1, 1), "vagner@silva.com", true, DateTime.Now);
-
-            var clienteRepository = new Mock<IClienteRepository>();
-            var mediatr = new Mock<IMediator>();
-
-            var clienteService = new ClienteService(clienteRepository.Object, mediatr.Object);
+                      
 
             //Act
             clienteService.Adicionar(cliente);
@@ -40,12 +48,7 @@ namespace _1028_teste.Tests.Services
         {
             //Arrange
             var cliente = new Cliente(Guid.NewGuid(), "", "Silva", new DateTime(1999, 1, 1), "vagner@silva.com", true, DateTime.Now);
-
-            var clienteRepository = new Mock<IClienteRepository>();
-            var mediatr = new Mock<IMediator>();
-
-            var clienteService = new ClienteService(clienteRepository.Object, mediatr.Object);
-
+            
             //Act
             clienteService.Adicionar(cliente);
 
@@ -67,15 +70,10 @@ namespace _1028_teste.Tests.Services
             {
                 cliente1,
                 cliente2
-            };
-
-            var clienteRepository = new Mock<IClienteRepository>();
-            var mediatr = new Mock<IMediator>();
+            };            
 
             clienteRepository.Setup(x => x.ObterTodos())
-                .Returns(listaBanco);
-
-            var clienteService = new ClienteService(clienteRepository.Object, mediatr.Object);
+                .Returns(listaBanco);            
 
             //Act
             var result = clienteService.ObterTodosAtivos();
