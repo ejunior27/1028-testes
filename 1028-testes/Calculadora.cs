@@ -1,6 +1,6 @@
 ﻿namespace _1028_testes
 {
-    public class Calculadora
+    public class Calculadora : ICalculadora
     {
         public int Somar(int v1, int v2)
         {
