@@ -16,7 +16,6 @@ namespace _1028_teste.Tests.Services
     {
         private readonly Mock<IClienteRepository> clienteRepository;
         private readonly Mock<IMediator> mediatr;
-
         private readonly ClienteService clienteService;
 
         public ClienteServiceTests()
@@ -30,8 +29,7 @@ namespace _1028_teste.Tests.Services
         public void Adicionar_Cliente_Valido()
         {
             //Arrange
-            var cliente = new Cliente(Guid.NewGuid(), "Vagner", "Silva", new DateTime(1999, 1, 1), "vagner@silva.com", true, DateTime.Now);
-                      
+            var cliente = new Cliente(Guid.NewGuid(), "Vagner", "Silva", new DateTime(1999, 1, 1), "vagner@silva.com", true, DateTime.Now);                      
 
             //Act
             clienteService.Adicionar(cliente);
@@ -73,13 +71,14 @@ namespace _1028_teste.Tests.Services
             };            
 
             clienteRepository.Setup(x => x.ObterTodos())
-                .Returns(listaBanco);            
+                .Returns(listaBanco);
 
             //Act
             var result = clienteService.ObterTodosAtivos();
 
             //Assert
             result.Should().HaveCount(2);
+            clienteRepository.Verify(x => x.ObterTodos(), Times.Once);
         }
     }
 }
