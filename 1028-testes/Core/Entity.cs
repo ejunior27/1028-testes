@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
 namespace _1028_testes.Core
-{
+{    
     public abstract class Entity
     {
+        [ExcludeFromCodeCoverage]
         public Guid Id { get; protected set; }
-        public ValidationResult ValidationResult { get; protected set; }
+        public ValidationResult ValidationResult { get; protected set; }       
 
         public virtual bool EhValido()
         {
             throw new NotImplementedException();
         }
-
+        
         public override bool Equals(object obj)
         {
             var compareTo = obj as Entity;
